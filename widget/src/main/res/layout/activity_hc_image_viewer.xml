@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#FF1D1D26">
+
+	<androidx.viewpager2.widget.ViewPager2
+		android:id="@+id/photoViewPager"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_centerInParent="true" />
+
+	<LinearLayout
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/toolbar_height"
+		android:layout_alignParentTop="true"
+		android:background="@color/mainDarkAlpha"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/action_back"
+			style="@style/Icon.Toolbar"
+			android:layout_gravity="start|center_vertical"
+			app:srcCompat="@drawable/ic_arrow_back" />
+
+		<FrameLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/numeration"
+				style="@style/ToolbarText"
+				android:textColor="@color/colorWhite70"
+				tools:text="1/5" />
+		</FrameLayout>
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/action_share"
+			style="@style/Icon.Toolbar"
+			android:layout_gravity="end|center_vertical"
+			android:visibility="invisible"
+			app:srcCompat="@drawable/ic_share"
+			tools:visibility="visible" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/bottomBar"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/toolbar_height"
+		android:layout_alignParentBottom="true"
+		android:background="@color/mainDarkAlpha"
+		android:gravity="center"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/sender_name"
+			style="@style/ToolbarText"
+			android:layout_width="match_parent"
+			android:textColor="@color/colorWhite70"
+			tools:text="Toolbar" />
+	</LinearLayout>
+
+</RelativeLayout>

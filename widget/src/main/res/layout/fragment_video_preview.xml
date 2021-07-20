@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <com.github.vkay94.dtpv.DoubleTapPlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dtpv_controller="@+id/youtube_overlay"
+        app:surface_type="surface_view" />
+
+    <com.github.vkay94.dtpv.youtube.YouTubeOverlay
+        android:id="@+id/youtube_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:show_buffering="always"
+        app:yt_playerView="@+id/playerView" />
+
+    <com.hmomeni.progresscircula.ProgressCircula
+        android:id="@+id/video_progress"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:background="@drawable/ic_player_progress"
+        android:visibility="gone"
+        app:pgc_indeterminate="true"
+        app:pgc_progress="40"
+        app:pgc_rimColor="#ffffff"
+        app:pgc_rimWidth="3dp"
+        app:pgc_showProgress="true"
+        app:pgc_speed="1"
+        tools:visibility="visible" />
+
+</FrameLayout>

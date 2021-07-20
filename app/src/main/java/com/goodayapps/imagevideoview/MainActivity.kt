@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.goodayapps.widget.screens.main.MediaPreviewerActivity
 import com.goodayapps.widget.models.MediaModel
 import com.goodayapps.widget.models.PreviewerModel
-import com.goodayapps.widget.utils.initMedia
+import com.goodayapps.widget.utils.initMediaView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        initMedia(this)
+        initMediaView(this)
 
         findViewById<View>(R.id.aaaaa).setOnClickListener {
             openPreview()

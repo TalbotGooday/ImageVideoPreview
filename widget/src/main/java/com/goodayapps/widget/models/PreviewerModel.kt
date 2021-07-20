@@ -94,6 +94,10 @@ class PreviewerModel private constructor(
             this.data?.addAll(newData)
         }
 
+        fun withSupposedUrls(vararg urls: String) = apply {
+            withSupposedUrls(urls.toList())
+        }
+
         fun withSupposedUris(uris: List<Uri>?) = apply {
             val newData = uris?.map { MediaModel(uri = it) } ?: return@apply
 
@@ -104,6 +108,10 @@ class PreviewerModel private constructor(
             this.data?.addAll(newData)
         }
 
+        fun withSupposedUris(vararg uris: Uri) = apply {
+            withSupposedUris(uris.toList())
+        }
+
         fun withSupposedItems(media: List<MediaModel>?) = apply {
             val newData = media ?: return@apply
 
@@ -112,6 +120,10 @@ class PreviewerModel private constructor(
             }
 
             this.data?.addAll(newData)
+        }
+
+        fun withSupposedItems(vararg media: MediaModel) = apply {
+            withSupposedItems(media.toList())
         }
 
         fun build() = PreviewerModel(this)

@@ -10,7 +10,7 @@ import coil.fetch.VideoFrameFileFetcher
 import coil.fetch.VideoFrameUriFetcher
 import coil.util.DebugLogger
 
-fun initMedia(context: Context) {
+fun initMediaView(context: Context) {
     Coil.setImageLoader(
         ImageLoader.Builder(context)
             .crossfade(false)

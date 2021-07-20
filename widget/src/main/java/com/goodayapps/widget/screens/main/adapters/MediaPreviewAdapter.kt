@@ -21,18 +21,6 @@ class MediaPreviewAdapter(fragmentActivity: FragmentActivity) :
 
     override fun createFragment(position: Int): Fragment {
         val item = data[position]
-        //
-        // var fragment = fragments[position]
-        //
-        // if (fragment == null) {
-        //     fragment = if (item.isVideo) {
-        //         VideoViewFragment.new(item)
-        //     } else {
-        //         ImageViewFragment.new(item)
-        //     }
-        // }
-        //
-        // fragments[position] = fragment
 
         return if (item.isVideo) {
             VideoViewFragment.new(item)

@@ -2,7 +2,7 @@ package com.goodayapps.widget.utils
 
 import android.view.View
 
-fun View.animateGone(duration: Long = 220, action: (() -> Unit)? = null) {
+internal fun View.animateGone(duration: Long = 220, action: (() -> Unit)? = null) {
     if (visibility != View.GONE) {
         animate().setDuration(duration)
             .alpha(0f)
@@ -13,7 +13,7 @@ fun View.animateGone(duration: Long = 220, action: (() -> Unit)? = null) {
     }
 }
 
-fun View.animateVisible(duration: Long = 220) {
+internal fun View.animateVisible(duration: Long = 220) {
     if (visibility != View.VISIBLE) {
         alpha = 0f
         visibility = View.VISIBLE

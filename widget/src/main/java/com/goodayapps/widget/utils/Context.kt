@@ -9,14 +9,14 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-fun Context.colorAttribute(@AttrRes colorRes: Int): Int {
+internal fun Context.colorAttribute(@AttrRes colorRes: Int): Int {
     val typedValue = TypedValue()
     val theme: Resources.Theme = theme
     theme.resolveAttribute(colorRes, typedValue, true)
     return typedValue.data
 }
 
-fun Context.setStatusBarColor(@ColorInt color: Int) {
+internal fun Context.setStatusBarColor(@ColorInt color: Int) {
     val activity = this as? AppCompatActivity ?: if (this is Fragment) this.activity else null
     activity ?: return
 

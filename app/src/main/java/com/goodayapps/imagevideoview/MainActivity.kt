@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             withSupposedItems(
                 listOf(
                     MediaModel(
-                        url = "https://cs14.pikabu.ru/video/2021/07/20/1626752464231067266_1280x720.webm",
+                        url = "https://smapp-staging.s3.ap-east-1.amazonaws.com/upload/4/post/mZDcBKCo_video.mp4",
+                        thumbnailUrl = "https://smapp-staging.s3.ap-east-1.amazonaws.com/upload/4/post/yeBZQFKD_image.jpeg"
                     ),
                     MediaModel(
                         url = "https://cs14.pikabu.ru/video/2021/07/20/16267540982279202_576x1024.webm",

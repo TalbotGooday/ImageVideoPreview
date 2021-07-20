@@ -29,7 +29,6 @@ class MediaPreviewAdapter(fragmentActivity: FragmentActivity) :
         }
     }
 
-
     fun onPageSelected(position: Int = currentPosition) {
         if (currentPosition != position) {
             onPause()
@@ -40,7 +39,7 @@ class MediaPreviewAdapter(fragmentActivity: FragmentActivity) :
         currentPosition = position
     }
 
-    fun onPause(){
+    fun onPause() {
         (fragments[currentPosition] as? FragmentLifecycle)?.onPauseFragment()
     }
 

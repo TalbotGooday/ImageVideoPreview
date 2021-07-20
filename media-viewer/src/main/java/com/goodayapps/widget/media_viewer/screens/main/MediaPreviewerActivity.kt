@@ -16,16 +16,17 @@ import com.billy.android.swipe.listener.SimpleSwipeListener
 import com.goodayapps.widget.media_viewer.R
 import com.goodayapps.widget.media_viewer.databinding.ActivityHcImageViewerBinding
 import com.goodayapps.widget.media_viewer.models.PreviewerModel
+import com.goodayapps.widget.media_viewer.screens.base.ContentClickListener
 import com.goodayapps.widget.media_viewer.screens.main.adapters.MediaPreviewAdapter
 import com.goodayapps.widget.media_viewer.utils.animateGone
 import com.goodayapps.widget.media_viewer.utils.animateVisible
 import com.goodayapps.widget.media_viewer.utils.colorAttribute
 import com.goodayapps.widget.media_viewer.utils.setStatusBarColor
 
-open class MediaPreviewerActivity : AppCompatActivity() {
+open class MediaPreviewerActivity : AppCompatActivity(), ContentClickListener {
     companion object {
         const val MODEL = "model"
-        private const val ANIM_DURATION: Long = 250
+        private const val ANIM_DURATION: Long = 150
 
         @JvmStatic
         fun open(context: Context, model: PreviewerModel) {
@@ -118,6 +119,15 @@ open class MediaPreviewerActivity : AppCompatActivity() {
         }
 
         initActivityWithData()
+    }
+
+    override fun onClick() {
+        toggleBarsVisibility()
+    }
+
+    override fun setTopBottomBarsVisible(visible: Boolean) {
+        areBarsVisible = visible.not()
+        toggleBarsVisibility()
     }
 
     override fun onBackPressed() {

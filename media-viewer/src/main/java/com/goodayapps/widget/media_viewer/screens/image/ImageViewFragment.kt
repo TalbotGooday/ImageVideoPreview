@@ -1,5 +1,6 @@
 package com.goodayapps.widget.media_viewer.screens.image
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import coil.load
 import com.goodayapps.widget.media_viewer.databinding.FragmentImagePreviewBinding
 import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.screens.base.ContentClickListener
 import com.goodayapps.widget.media_viewer.screens.base.FragmentLifecycle
 
 class ImageViewFragment : Fragment(), FragmentLifecycle {
@@ -24,6 +26,8 @@ class ImageViewFragment : Fragment(), FragmentLifecycle {
     private var _binding: FragmentImagePreviewBinding? = null
 
     private val binding get() = _binding!!
+
+    private var listener: ContentClickListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +54,19 @@ class ImageViewFragment : Fragment(), FragmentLifecycle {
         initMediaData(media)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is ContentClickListener) {
+            this.listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        this.listener = null
+    }
+
     private fun initMediaData(media: MediaModel) = with(binding.root as ImageView) {
         if (media.url != null) {
             load(media.url)
@@ -58,6 +75,8 @@ class ImageViewFragment : Fragment(), FragmentLifecycle {
         if (media.uri != null) {
             load(media.uri)
         }
+
+        setOnClickListener { listener?.onClick() }
     }
 
     private fun showError() {

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.github.vkay94.dtpv.youtube.YouTubeOverlay.PerformListener
 import com.goodayapps.widget.media_viewer.databinding.FragmentVideoPreviewBinding
 import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.screens.base.ContentClickListener
 import com.goodayapps.widget.media_viewer.screens.base.FragmentLifecycle
 import com.goodayapps.widget.media_viewer.utils.animateGone
 import com.goodayapps.widget.media_viewer.utils.animateVisible
@@ -21,6 +22,7 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.SimpleExoPlayer.Builder
+import com.google.android.exoplayer2.ui.PlayerControlView
 
 class VideoViewFragment : Fragment(), FragmentLifecycle {
     companion object {
@@ -46,7 +48,8 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
     private var startAutoPlay: Boolean = true
     private var startWindow: Int = C.INDEX_UNSET
 
-    private val handler = Handler(Looper.getMainLooper())
+    private val videoProgressHandler = Handler(Looper.getMainLooper())
+    private var listener: ContentClickListener? = null
     private val showProcessRunnable = Runnable {
         binding.videoProgress.animateVisible()
         binding.playerView.hideController()
@@ -81,6 +84,19 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
         initMediaData(media!!)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is ContentClickListener) {
+            this.listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        this.listener = null
+    }
+
     override fun onResume() {
         super.onResume()
         initPlayer(requireContext())
@@ -104,6 +120,7 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
         super.onCreate(savedInstanceState)
         handleSavedState(savedInstanceState)
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         updateStartPosition()
@@ -122,7 +139,6 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
         startPosition = savedInstanceState?.getLong(KEY_POSITION) ?: C.TIME_UNSET
         startAutoPlay = savedInstanceState?.getBoolean(KEY_AUTO_PLAY) ?: true
         startWindow = savedInstanceState?.getInt(KEY_WINDOW) ?: C.INDEX_UNSET
-
     }
 
     private fun updateStartPosition() {
@@ -165,6 +181,13 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
 
     private fun initViews() {
         initPlayer(requireContext())
+
+        binding.apply {
+            playerView.controllerAutoShow = false
+            playerView.setControllerVisibilityListener(PlayerControlView.VisibilityListener {
+                listener?.setTopBottomBarsVisible(it == View.VISIBLE)
+            })
+        }
     }
 
     private fun initPlayer(context: Context) = with(binding) {
@@ -181,13 +204,14 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
             player.playWhenReady = startAutoPlay
             player.addListener(object : Player.Listener {
                 override fun onPlaybackStateChanged(state: Int) {
-                    if (state == Player.STATE_BUFFERING) {
-                        handler.postDelayed(showProcessRunnable, 500)
-                    } else {
-                        handler.removeCallbacks(showProcessRunnable)
-
-                        videoProgress.animateGone()
-                        playerView.showController()
+                    when (state) {
+                        Player.STATE_BUFFERING -> {
+                            videoProgressHandler.postDelayed(showProcessRunnable, 500)
+                        }
+                        else -> {
+                            hideProgress()
+                            playerView.showController()
+                        }
                     }
                 }
             })
@@ -212,5 +236,11 @@ class VideoViewFragment : Fragment(), FragmentLifecycle {
 
         media?.let { initMediaData(it) }
 
+    }
+
+    private fun FragmentVideoPreviewBinding.hideProgress() {
+        videoProgressHandler.removeCallbacks(showProcessRunnable)
+
+        videoProgress.animateGone()
     }
 }

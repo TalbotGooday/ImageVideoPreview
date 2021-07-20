@@ -9,8 +9,8 @@ import com.goodayapps.widget.media_viewer.utils.WEB_VIDEO_PATTERN
 class MediaModel(
     val url: String? = null,
     val uri: Uri? = null,
-    val previewUrl: String? = null,
-    val previewUri: Uri? = null,
+    val thumbnailUrl: String? = null,
+    val thumbnailUri: Uri? = null,
 ) : Parcelable {
     val isVideo: Boolean
         get() = (url != null && WEB_VIDEO_PATTERN.toRegex().matches(url)) ||
@@ -31,8 +31,8 @@ class MediaModel(
         if (url != other.url) return false
         if (uri != other.uri) return false
 
-        if (previewUrl != other.previewUrl) return false
-        if (previewUri != other.previewUri) return false
+        if (thumbnailUrl != other.thumbnailUrl) return false
+        if (thumbnailUri != other.thumbnailUri) return false
 
         return true
     }
@@ -46,8 +46,8 @@ class MediaModel(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(url)
         parcel.writeParcelable(uri, flags)
-        parcel.writeString(previewUrl)
-        parcel.writeParcelable(previewUri, flags)
+        parcel.writeString(thumbnailUrl)
+        parcel.writeParcelable(thumbnailUri, flags)
     }
 
     override fun describeContents(): Int {

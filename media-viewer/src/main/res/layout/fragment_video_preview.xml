@@ -11,6 +11,7 @@
         android:id="@+id/playerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:use_artwork="true"
         app:dtpv_controller="@+id/youtube_overlay"
         app:surface_type="surface_view" />
 

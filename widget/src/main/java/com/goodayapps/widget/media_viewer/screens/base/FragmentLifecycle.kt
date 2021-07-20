@@ -1,4 +1,4 @@
-package com.goodayapps.widget.screens.base
+package com.goodayapps.widget.media_viewer.screens.base
 
 internal interface FragmentLifecycle {
     fun onPauseFragment(){

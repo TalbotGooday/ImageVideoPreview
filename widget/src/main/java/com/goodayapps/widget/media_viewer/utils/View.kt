@@ -1,4 +1,4 @@
-package com.goodayapps.widget.utils
+package com.goodayapps.widget.media_viewer.utils
 
 import android.view.View
 

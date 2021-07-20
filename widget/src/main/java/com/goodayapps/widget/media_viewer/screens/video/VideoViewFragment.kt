@@ -1,4 +1,4 @@
-package com.goodayapps.widget.screens.video
+package com.goodayapps.widget.media_viewer.screens.video
 
 import android.content.Context
 import android.os.Bundle
@@ -11,12 +11,11 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.github.vkay94.dtpv.youtube.YouTubeOverlay.PerformListener
-import com.goodayapps.widget.R
-import com.goodayapps.widget.databinding.FragmentVideoPreviewBinding
-import com.goodayapps.widget.models.MediaModel
-import com.goodayapps.widget.screens.base.FragmentLifecycle
-import com.goodayapps.widget.utils.animateGone
-import com.goodayapps.widget.utils.animateVisible
+import com.goodayapps.widget.media_viewer.databinding.FragmentVideoPreviewBinding
+import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.screens.base.FragmentLifecycle
+import com.goodayapps.widget.media_viewer.utils.animateGone
+import com.goodayapps.widget.media_viewer.utils.animateVisible
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player

@@ -1,10 +1,10 @@
-package com.goodayapps.widget.models
+package com.goodayapps.widget.media_viewer.models
 
 import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import android.os.Parcelable.Creator
-import com.goodayapps.widget.utils.WEB_VIDEO_PATTERN
+import com.goodayapps.widget.media_viewer.utils.WEB_VIDEO_PATTERN
 
 class MediaModel(
     val url: String? = null,

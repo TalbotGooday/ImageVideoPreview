@@ -1,4 +1,4 @@
-package com.goodayapps.widget.screens.main
+package com.goodayapps.widget.media_viewer.screens.main
 
 import android.app.ActivityOptions
 import android.content.Context
@@ -13,15 +13,14 @@ import com.billy.android.swipe.SmartSwipeWrapper
 import com.billy.android.swipe.SwipeConsumer
 import com.billy.android.swipe.consumer.TranslucentSlidingConsumer
 import com.billy.android.swipe.listener.SimpleSwipeListener
-import com.goodayapps.widget.R.anim
-import com.goodayapps.widget.R.attr
-import com.goodayapps.widget.databinding.ActivityHcImageViewerBinding
-import com.goodayapps.widget.models.PreviewerModel
-import com.goodayapps.widget.screens.main.adapters.MediaPreviewAdapter
-import com.goodayapps.widget.utils.animateGone
-import com.goodayapps.widget.utils.animateVisible
-import com.goodayapps.widget.utils.colorAttribute
-import com.goodayapps.widget.utils.setStatusBarColor
+import com.goodayapps.widget.media_viewer.R
+import com.goodayapps.widget.media_viewer.databinding.ActivityHcImageViewerBinding
+import com.goodayapps.widget.media_viewer.models.PreviewerModel
+import com.goodayapps.widget.media_viewer.screens.main.adapters.MediaPreviewAdapter
+import com.goodayapps.widget.media_viewer.utils.animateGone
+import com.goodayapps.widget.media_viewer.utils.animateVisible
+import com.goodayapps.widget.media_viewer.utils.colorAttribute
+import com.goodayapps.widget.media_viewer.utils.setStatusBarColor
 
 open class MediaPreviewerActivity : AppCompatActivity() {
     companion object {
@@ -36,8 +35,8 @@ open class MediaPreviewerActivity : AppCompatActivity() {
 
             val options = ActivityOptions.makeCustomAnimation(
                 context,
-                anim.anim_hc_fade_in,
-                anim.anim_hc_fade_out
+                R.anim.anim_hc_fade_in,
+                R.anim.anim_hc_fade_out
             )
             context.startActivity(intent, options.toBundle())
         }
@@ -61,7 +60,7 @@ open class MediaPreviewerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = colorAttribute(attr.colorPrimary)
+            window.navigationBarColor = colorAttribute(R.attr.colorPrimary)
         }
 
         with(binding) {
@@ -90,7 +89,7 @@ open class MediaPreviewerActivity : AppCompatActivity() {
                         container.alpha = alpha
 
                         val alphaComponent = ColorUtils.setAlphaComponent(
-                            colorAttribute(attr.colorPrimary),
+                            colorAttribute(R.attr.colorPrimary),
                             (255 * alpha).toInt()
                         )
 
@@ -192,11 +191,11 @@ open class MediaPreviewerActivity : AppCompatActivity() {
     }
 
     private fun shareImage(url: String?) {
-        var fileName = url?.substringAfterLast("/")
-
-        if (fileName.isNullOrBlank()) {
-            fileName = "${System.currentTimeMillis()}.jpeg"
-        }
+        // var fileName = url?.substringAfterLast("/")
+        //
+        // if (fileName.isNullOrBlank()) {
+        //     fileName = "${System.currentTimeMillis()}.jpeg"
+        // }
     }
 
     private fun setImageCounter(position: Int) {

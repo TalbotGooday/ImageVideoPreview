@@ -1,12 +1,12 @@
-package com.goodayapps.widget.screens.main.adapters
+package com.goodayapps.widget.media_viewer.screens.main.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.goodayapps.widget.models.MediaModel
-import com.goodayapps.widget.screens.base.FragmentLifecycle
-import com.goodayapps.widget.screens.image.ImageViewFragment
-import com.goodayapps.widget.screens.video.VideoViewFragment
+import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.screens.base.FragmentLifecycle
+import com.goodayapps.widget.media_viewer.screens.image.ImageViewFragment
+import com.goodayapps.widget.media_viewer.screens.video.VideoViewFragment
 
 class MediaPreviewAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

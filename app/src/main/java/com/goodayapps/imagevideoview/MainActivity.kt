@@ -3,10 +3,10 @@ package com.goodayapps.imagevideoview
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.goodayapps.widget.screens.main.MediaPreviewerActivity
-import com.goodayapps.widget.models.MediaModel
-import com.goodayapps.widget.models.PreviewerModel
-import com.goodayapps.widget.utils.initMediaView
+import com.goodayapps.widget.media_viewer.screens.main.MediaPreviewerActivity
+import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.models.PreviewerModel
+import com.goodayapps.widget.media_viewer.utils.initMediaView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

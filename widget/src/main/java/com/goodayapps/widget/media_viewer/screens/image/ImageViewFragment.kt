@@ -1,4 +1,4 @@
-package com.goodayapps.widget.screens.image
+package com.goodayapps.widget.media_viewer.screens.image
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import coil.load
-import com.goodayapps.widget.databinding.FragmentImagePreviewBinding
-import com.goodayapps.widget.models.MediaModel
-import com.goodayapps.widget.screens.base.FragmentLifecycle
+import com.goodayapps.widget.media_viewer.databinding.FragmentImagePreviewBinding
+import com.goodayapps.widget.media_viewer.models.MediaModel
+import com.goodayapps.widget.media_viewer.screens.base.FragmentLifecycle
 
 class ImageViewFragment : Fragment(), FragmentLifecycle {
     companion object {

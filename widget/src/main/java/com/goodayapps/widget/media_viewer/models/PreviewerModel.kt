@@ -1,4 +1,4 @@
-package com.goodayapps.widget.models
+package com.goodayapps.widget.media_viewer.models
 
 import android.net.Uri
 import android.os.Parcel

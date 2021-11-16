@@ -14,6 +14,8 @@ import com.goodayapps.widget.media_viewer.screens.base.MediaHolder
 import com.goodayapps.widget.media_viewer.screens.main.adapters.MediaPreviewAdapter
 import com.goodayapps.widget.media_viewer.utils.animateGone
 import com.goodayapps.widget.media_viewer.utils.animateVisible
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ImageViewViewHolder(private val binding: ItemImagePreviewBinding) :
     MediaHolder(binding.root) {
@@ -32,18 +34,13 @@ class ImageViewViewHolder(private val binding: ItemImagePreviewBinding) :
     private fun initMediaData(media: MediaModel) = with(binding) {
         videoProgressHandler.postDelayed(showProcessRunnable, 0)
 
-        val uri = media.uri ?: media.url?.let { Uri.parse(it) }
-
-        if (uri != null) {
-            MediaViewer.imageUriResolver.resolve(uri) {
-                if (it != null) {
-                    loadUri(this, it, this@ImageViewViewHolder)
-                } else {
-                    clear()
-                }
+        GlobalScope.launch {
+            val resolvedMedia = MediaViewer.imageUriResolver.resolve(media)?.content
+            if (resolvedMedia != null) {
+                loadUri(this@with, resolvedMedia, this@ImageViewViewHolder)
+            } else {
+                clear()
             }
-        } else {
-            clear()
         }
 
         photoView.setOnClickListener { listener?.onClick() }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface AppPlayer {
     val currentPlayerState: PlayerState
 
-    fun setUpWith(data: List<MediaModel>, playerState: PlayerState?)
+    suspend fun setUpWith(data: List<MediaModel>, playerState: PlayerState?)
     fun isPlayerRendering(): Flow<Boolean>
     fun isPlayerBuffering(): Flow<Boolean>
     fun playMediaAt(position: Int, startTime: Long)

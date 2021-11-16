@@ -47,11 +47,13 @@ class MediaViewerViewModel(private val handle: PlayerSavedStateHandle) : ViewMod
     }
 
     fun setVideoData(context: Context, data: List<MediaModel>) {
-        setupVideoWithFilteredData(context, appPlayer, data)
-        viewStates.update { it.copy(data = data) }
+       viewModelScope.launch {
+           setupVideoWithFilteredData(context, appPlayer, data)
+           viewStates.update { it.copy(data = data) }
+       }
     }
 
-    private fun setupVideoWithFilteredData(
+    private suspend fun setupVideoWithFilteredData(
         context: Context,
         appPlayer: AppPlayer?,
         data: List<MediaModel>
@@ -70,6 +72,9 @@ class MediaViewerViewModel(private val handle: PlayerSavedStateHandle) : ViewMod
             }
             PlayerEvent.TappedPlayer -> {
                 onPlayerTapped()
+            }
+            else -> {
+                // no-op
             }
         }
     }
@@ -91,8 +96,10 @@ class MediaViewerViewModel(private val handle: PlayerSavedStateHandle) : ViewMod
                     }
                 }
                 .launchIn(viewModelScope)
-            viewStates.value.data?.let {
-                setupVideoWithFilteredData(context, this, it)
+            viewModelScope.launch {
+                viewStates.value.data?.let {
+                    setupVideoWithFilteredData(context, this@apply, it)
+                }
             }
         }.also {
             appPlayer = it

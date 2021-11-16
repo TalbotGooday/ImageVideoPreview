@@ -1,10 +1,10 @@
 package com.goodayapps.widget.media_viewer.core
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import com.goodayapps.widget.media_viewer.core.players.ExoAppPlayer
 import com.goodayapps.widget.media_viewer.core.players.RecyclerViewPreviewerModelUpdater
+import com.goodayapps.widget.media_viewer.models.MediaModel
 import com.goodayapps.widget.media_viewer.utils.cache.CacheDataSourceFactory
 import com.goodayapps.widget.media_viewer.utils.initMediaView
 import com.google.android.exoplayer2.ExoPlayer
@@ -71,12 +71,16 @@ object MediaViewer {
     }
 
     abstract class UriResolver {
-        open fun resolve(originalUri: Uri?, callback: (resolvedUri: Uri?) -> Unit = {}) {
-            callback(originalUri)
+        open suspend fun resolve(originalData: MediaModel): MediaModel? {
+            return originalData.apply {
+                this.resolvedUri = this.content
+            }
         }
 
-        open fun resolve(originalUris: List<Uri?>, callback: (resolvedUris: List<Uri?>) -> Unit = {}) {
-            callback(originalUris)
+        open suspend fun resolve(originalData: List<MediaModel>): List<MediaModel> {
+            return originalData.onEach {
+                it.resolvedUri = it.content
+            }
         }
     }
 }

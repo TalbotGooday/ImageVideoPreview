@@ -20,13 +20,11 @@ interface PreviewerModelUpdater {
  */
 class RecyclerViewPreviewerModelUpdater : PreviewerModelUpdater {
     override fun update(exoPlayer: ExoPlayer, incoming: List<MediaModel>) {
-        MediaViewer.mediaUriResolver.resolve(incoming.map { it.content }){
-            val newMediaItems = it.filterNotNull().toMediaItems()
-            val diffCallback = MediaItemDiffCallback(exoPlayer.currentMediaItems, newMediaItems)
-            val updateCallback = ExoPlayerUpdateCallback(exoPlayer, newMediaItems)
-            val result = DiffUtil.calculateDiff(diffCallback)
-            result.dispatchUpdatesTo(updateCallback)
-        }
+        val newMediaItems = incoming.mapNotNull { it.content }.toMediaItems()
+        val diffCallback = MediaItemDiffCallback(exoPlayer.currentMediaItems, newMediaItems)
+        val updateCallback = ExoPlayerUpdateCallback(exoPlayer, newMediaItems)
+        val result = DiffUtil.calculateDiff(diffCallback)
+        result.dispatchUpdatesTo(updateCallback)
     }
 
     private fun List<Uri>.toMediaItems(): List<MediaItem> {

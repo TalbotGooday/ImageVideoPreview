@@ -90,17 +90,13 @@ open class MediaViewerActivity : AppCompatActivity(), ContentClickListener {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        appPlayerView.onStart(viewModel.getPlayer(this))
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MediaViewer.init(this)
 
         binding = ActivityImageViewerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        appPlayerView.onStart(viewModel.getPlayer(this))
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
@@ -125,7 +121,11 @@ open class MediaViewerActivity : AppCompatActivity(), ContentClickListener {
                 .launchIn(lifecycleScope)
             viewModel.viewStates()
                 .onEach { viewStates ->
-                    setCurrentItem(0)
+                    viewModel.processEvent(
+                        PlayerEvent.SettledOnPage(
+                        binding.photoViewPager.currentItem,
+                        mediaAdapter.getRelativeVideoPosition(binding.photoViewPager.currentItem)
+                    ))
                 }
                 .launchIn(lifecycleScope)
 

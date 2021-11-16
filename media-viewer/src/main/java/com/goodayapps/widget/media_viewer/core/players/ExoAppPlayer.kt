@@ -1,5 +1,6 @@
 package com.goodayapps.widget.media_viewer.core.players
 
+import com.goodayapps.widget.media_viewer.core.MediaViewer
 import com.goodayapps.widget.media_viewer.models.MediaModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
@@ -13,11 +14,13 @@ class ExoAppPlayer(
 ) : AppPlayer {
     override val currentPlayerState: PlayerState get() = exoPlayer.toPlayerState()
 
-    override fun setUpWith(data: List<MediaModel>, playerState: PlayerState?) {
+    override suspend fun setUpWith(data: List<MediaModel>, playerState: PlayerState?) {
         // A signal to restore any saved video state.
         val isInitializing = exoPlayer.currentMediaItem == null
 
-        updater.update(exoPlayer = exoPlayer, incoming = data)
+        val resolvedData = MediaViewer.mediaUriResolver.resolve(data)
+
+        updater.update(exoPlayer = exoPlayer, incoming = resolvedData)
         val currentMediaItems = exoPlayer.currentMediaItems
 
         val reconciledPlayerState = if (isInitializing) {

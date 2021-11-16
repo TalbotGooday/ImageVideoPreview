@@ -9,6 +9,7 @@ object AssetVideoData {
     val all = listOf(waves, christmas, yellow)
 
     val webData = listOf(
+        "https://firebasestorage.googleapis.com/v0/b/comunitee-v2.appspot.com/o/posts%2Fvideos%2FwxvfL0dKdQp425nYC77i.mp4?alt=media&token=fd0f43c8-c577-46ea-98df-e2b1e50dbd5c",
         "https://www.nawpic.com/media/2020/wallpaper-for-phone-nawpic-10.jpg",
         "https://cs14.pikabu.ru/video/2021/11/14/163691994627424218_960x540.webm",
         "https://cs14.pikabu.ru/video/2021/11/12/1636691841257635472_480x852.webm",

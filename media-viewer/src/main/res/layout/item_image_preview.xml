@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photo_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
+
+    <com.goodayapps.widget.media_viewer.utils.widgets.progress.MvProgress
+        android:id="@+id/video_progress"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_player_progress"
+        android:padding="8dp"
+        app:mvpg_indeterminate="true"
+        app:mvpg_progress="40"
+        app:mvpg_rimColor="#ffffff"
+        app:mvpg_rimWidth="3dp"
+        app:mvpg_showProgress="true"
+        app:mvpg_speed="1"
+        tools:visibility="visible" />
+
+</FrameLayout>

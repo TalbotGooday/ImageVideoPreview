@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mainDarkAlpha">#57171b24</color>
+    <color name="colorWhite70">#B3FFFFFF</color>
+    <color name="hc_color_previewer_bar_primary">#1d1d26</color>
+    <color name="playerButtonBgColor">#80182639</color>
+    <color name="mediaViewBackgroundColor">#FF1D1D26</color>
+    <color name="hc_black_p50">#80000000</color>
+
+</resources>

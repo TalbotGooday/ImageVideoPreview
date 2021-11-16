@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MediaViewerTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/hc_color_previewer_bar_primary</item>
+        <item name="colorPrimaryDark">@color/hc_color_previewer_bar_primary</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="MediaViewer"/>
+
+    <style name="MediaViewer.Icon">
+        <item name="android:layout_width">@dimen/toolbar_height</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+    </style>
+
+    <style name="MediaViewer.Icon.Toolbar"/>
+
+    <style name="MediaViewer.Icon.Toolbar.Media">
+        <item name="android:tint">#ffffff</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="MediaViewer.ToolbarText">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">?preview_font_family</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:textColor">@color/colorWhite70</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+</resources>

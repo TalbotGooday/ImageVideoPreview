@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="preview_font_family" format="reference"/>
+
+    <declare-styleable name="MvProgress">
+        <attr name="mvpg_showProgress" format="boolean" />
+        <attr name="mvpg_indeterminate" format="boolean" />
+        <attr name="mvpg_textColor" format="color" />
+        <attr name="mvpg_rimColor" format="color" />
+        <attr name="mvpg_progress" format="integer" />
+        <attr name="mvpg_rimWidth" format="dimension" />
+        <attr name="mvpg_speed" format="float" />
+    </declare-styleable>
+</resources>

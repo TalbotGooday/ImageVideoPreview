@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/mediaViewBackgroundColor">
+
+	<androidx.viewpager2.widget.ViewPager2
+		android:id="@+id/photoViewPager"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:background="#ffffff"/>
+
+	<LinearLayout
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/toolbar_height"
+		android:background="@color/mainDarkAlpha"
+		android:orientation="horizontal"
+		android:elevation="10dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/action_back"
+			style="@style/MediaViewer.Icon.Toolbar.Media"
+			android:layout_gravity="start|center_vertical"
+			app:srcCompat="@drawable/ic_arrow_back" />
+
+		<FrameLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/numeration"
+				style="@style/MediaViewer.ToolbarText"
+				android:textColor="@color/colorWhite70"
+				tools:text="1/5" />
+		</FrameLayout>
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/action_share"
+			style="@style/MediaViewer.Icon.Toolbar.Media"
+			android:layout_gravity="end|center_vertical"
+			android:visibility="invisible"
+			app:srcCompat="@drawable/ic_share"
+			tools:visibility="visible" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/bottomBar"
+		android:layout_width="match_parent"
+		android:elevation="10dp"
+		android:layout_height="@dimen/toolbar_height"
+		android:background="@color/mainDarkAlpha"
+		android:gravity="center"
+		android:orientation="horizontal"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/sender_name"
+			style="@style/MediaViewer.ToolbarText"
+			android:layout_width="match_parent"
+			android:textColor="@color/colorWhite70"
+			tools:text="Bottom bar" />
+	</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
